@@ -1,7 +1,6 @@
 import cv2
 import numpy as np
 from skimage.measure import label, regionprops
-from skimage import color
 
 def add(d, npar):
     t = tuple(npar.tolist())
