@@ -24,6 +24,7 @@ for region in regionprops(label(source)):
         add(balls, source[y, x])
 
 f = open("output.txt", "w")
+f.write("figures found: " + str(len(balls) + len(rects)) + "\n")
 f.write("balls counted: " + str(len(balls)) + "\n")
 for color in balls:
     f.write("\t" + str(color) + ": " + str(balls[color]) + "\n")

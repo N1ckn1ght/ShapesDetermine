@@ -1,3 +1,4 @@
+figures found: 256
 balls counted: 121
 	(17, 68, 171): 3
 	(146, 68, 29): 3
