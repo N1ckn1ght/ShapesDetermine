@@ -2,7 +2,6 @@ import cv2
 import numpy as np
 from skimage.measure import label, regionprops
 import matplotlib.colors as mc
-import webcolors
 
 
 def get_color(rgb):
