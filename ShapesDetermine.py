@@ -1,26 +1,21 @@
 import cv2
 import numpy as np
 from skimage.measure import label, regionprops
-import matplotlib.colors as mc
-
-
-def get_color(rgb):
-    closest_color = "None"
-    closest_range = 196609
-    for name in mc.CSS4_COLORS:
-        color = mc.to_rgb(name)
-        diff = abs(rgb[0] - color[2]) ** 2 + abs(rgb[1] - color[1]) ** 2 + abs(rgb[2] - color[0]) ** 2
-        if (diff < closest_range):
-            closest_range = diff
-            closest_color = name
-    return closest_color
+from skimage.color import rgb2hsv
 
 def add(d, npar):
-    t = get_color(tuple((npar / 255).tolist()))
-    if t in d:
-        d[t] += 1
+    npar = rgb2hsv(npar)
+    for i in range(len(npar)):
+        npar[i] = int(npar[i] * 255)
+    if npar[0] in d:
+        d[npar[0]] += 1
+    # precision workaround
+    elif npar[0] - 1 in d:
+        d[npar[0] - 1] += 1
+    elif npar[0] + 1 in d:
+        d[npar[0] + 1] += 1
     else:
-        d[t] = 1
+        d[npar[0]] = 1
 
 
 balls = {}
